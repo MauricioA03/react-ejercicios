@@ -4,7 +4,6 @@ import CrudTableRow from "./CrudTableRow";
 const CrudTable = ({data, setDataToEdit, deleteData}) => {
     return (
         <div>
-
             <h3>Tabla de datos</h3>
             <table>
                 <thead>
@@ -16,7 +15,7 @@ const CrudTable = ({data, setDataToEdit, deleteData}) => {
                 </thead>
                 <tbody>
                 {data.length === 0 ? (<tr>
-                    <td colSpan={"3"}>Sin Datos</td>
+                    <td colSpan={3}>Sin Datos</td>
                 </tr>) : (data.map((el) =>
                     <CrudTableRow key={el.id}
                                   el={el}

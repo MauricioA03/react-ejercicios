@@ -16,7 +16,7 @@ const CrudApi = () => {
 
     useEffect(() => {
         setLoading(true);
-        api.get(url).then(res => {
+        helpHttp().get(url).then(res => {
             //console.log(res)
             if (!res.err) {
                 setDb(res);
@@ -33,19 +33,58 @@ const CrudApi = () => {
 
     const createData = (data) => {
         data.id = Date.now();
-        setDb([...db, data]);
+
+        let options = {
+            body: data,
+            headers: {"content-type": "application/json"}
+        };
+
+        api.post(url, options).then((res) => {
+            console.log(res);
+            if (!res.err) {
+                setDb([...db, res]);
+            } else {
+                setError(res);
+            }
+        });
     };
 
     const updateData = (data) => {
-        let newData = db.map((el) => el.id === data.id ? data : el);
-        setDb(newData);
+        let enpoint = `${url}/${data.id}`;
+        //console.log(enpoint);
+        let options = {
+            body: data,
+            headers: {"content-type": "application/json"}
+        };
+
+        api.put(enpoint, options).then((res) => {
+            //console.log(res);
+            if (!res.err) {
+                let newData = db.map((el) => el.id === data.id ? data : el);
+                setDb(newData);
+            } else {
+                setError(res);
+            }
+        });
+
     };
 
     const deleteData = (id) => {
         let idDelete = window.confirm(`Estas seguro de eliminar el regristo con el ID '${id}'`);
         if (idDelete) {
-            let newData = db.filter(el => el.id !== id);
-            setDb(newData);
+            let enpoint = `${url}/${id}`;
+            let options = {
+                headers: {"content-type": "application/json"}
+            };
+            api.del(enpoint, options).then(res => {
+                //console.log(res);
+                if (!res.err) {
+                    let newData = db.filter(el => el.id !== id);
+                    setDb(newData);
+                } else {
+                    setError(res);
+                }
+            });
         } else {
             return;
         }

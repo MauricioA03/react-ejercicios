@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import CrudForm from "./CrudForm";
 import CrudTable from "./CrudTable";
-import {helpHttp} from "../helpers/helpHttp";
-import Loader from "./Loader";
-import Message from "./Message";
+import {helpHttp} from "../../helpers/helpHttp";
+import Loader from "../Loader";
+import Message from "../Message";
 
 const CrudApi = () => {
     const [db, setDb] = useState(null);

@@ -1,6 +1,6 @@
 import React from "react";
-import CrudApp from "./components/CrudApp";
-import CrudApi from "./components/CrudApi";
+import CrudApp from "./components/CrudApi/CrudApp";
+import CrudApi from "./components/CrudApi/CrudApi";
 
 function App() {
     return (

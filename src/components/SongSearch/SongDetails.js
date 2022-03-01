@@ -10,11 +10,13 @@ const SongDetails = ({search, lyric, bio}) => {
         <>
             {lyric.error || lyric.err || lyric.name === "AbortError" ?
                 <Message
-                    msg={`Error: no exixte la cancion '${search.song}'`}
-                    bgColor={"#dc3545"}/> : <SongLyric/>}
-            {bio.artists ? <SongArtist/> :
+                    msg={`Error: no exixte la cancion "<em>${search.song}</em>"`}
+                    bgColor={"#dc3545"}/> :
+                <SongLyric title={search.song} lyrics={lyric.lyrics}/>}
+            {bio.artists ?
+                <SongArtist artist={bio.artists[0]}/> :
                 <Message
-                    msg={`Error: no exixte el interprete '${search.artist}'`}
+                    msg={`Error: no exixte el interprete '<em>${search.artist}</em>'`}
                     bgColor={"#dc3545"}/>}
         </>
     );

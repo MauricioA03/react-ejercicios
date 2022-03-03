@@ -1,4 +1,5 @@
 const SongLyric = ({title, lyrics}) => {
+    console.log(lyrics);
     return (
         <section>
             <h3>{title}</h3>

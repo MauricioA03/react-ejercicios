@@ -7,16 +7,20 @@ export const useForm = (initialForm, validateForm) => {
     const [response, setResponse] = useState(null);
 
     const handleChange = (e) => {
-
+        const {name, value} = e.target;
+        setform({
+            ...form, [name]: value,
+        });
     };
     const handleBlur = (e) => {
-
+        handleChange(e);
+        setErrors(validateForm(form));
     };
     const handleSubmit = (e) => {
 
     };
 
-    return (
-        form, errors, loading, response, handleSubmit, handleBlur, handleChange
-    );
-};
+    return {
+        form, errors, loading, response, handleChange, handleBlur, handleSubmit
+    };
+}
